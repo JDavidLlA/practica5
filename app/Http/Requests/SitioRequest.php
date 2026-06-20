@@ -2,28 +2,23 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SitioRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            //
+            'titulo' => 'required|min:3|max:120',
+            'url' => 'required|url|max:255',
+            'categoria' => 'required|max:50',
+            'descripcion' => 'nullable|max:500',
+            'destacado' => 'nullable|boolean',
         ];
     }
 }
